@@ -2,6 +2,16 @@
 
 The operations are run only when `toList()` is called on the collection. The records are looped over only once
 
+* Usage
+
+```
+    Account[] result = acctCollection
+      .mapValues(new AccountMap())
+      .filterValues(new AccountRevenueFilter())
+      .mapValues(new AccountMap())
+      .toList();
+```
+
 * Creating a Collection
 
 ```
@@ -34,12 +44,3 @@ Collection acctCollection = Collection.of(accounts);
 
 ```
 
-* Usage
-
-```
-    Account[] result = acctCollection
-      .mapValues(new AccountMap())
-      .filterValues(new AccountRevenueFilter())
-      .mapValues(new AccountMap())
-      .toList();
-```
