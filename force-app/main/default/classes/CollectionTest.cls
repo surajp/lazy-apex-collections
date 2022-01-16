@@ -7,10 +7,7 @@ public class CollectionTest {
     accountList.add(new Account(Name = 'Global'));
     accountList.add(new Account(Name = 'Tech'));
     Collection acctCollection = Collection.of(accountList);
-    Account[] result = acctCollection.filterValues(
-        new AccountNameFilter('Acme')
-      )
-      .toList();
+    Account[] result = acctCollection.filterValues(new AccountNameFilter('Acme')).toList();
     system.assertEquals(1, result.size());
     system.assertEquals('Acme', result[0].Name);
   }
@@ -46,11 +43,7 @@ public class CollectionTest {
     Collection acctCollection = Collection.of(accountList);
     Map<Object, Account> acctsByIndustry = new Map<Object, Account>();
     acctCollection.toMapByField(Account.Industry, acctsByIndustry);
-    system.assertEquals(
-      3,
-      acctsByIndustry.size(),
-      'Expected map by field to SObject to produce 3 values'
-    );
+    system.assertEquals(3, acctsByIndustry.size(), 'Expected map by field to SObject to produce 3 values');
     system.assert(
       acctsByIndustry.get('Technology') != null,
       'Expected map by field to SObject to return only 1 record per key'
@@ -66,8 +59,7 @@ public class CollectionTest {
     accountList.add(new Account(Name = 'Acclimate', Industry = 'Agriculture'));
     Collection acctCollection = Collection.of(accountList);
     Map<Object, List<Account>> acctsListByIndustry = new Map<Object, List<Account>>();
-    acctCollection.filterValues(new AccountIndustryFilter())
-      .toMapByField(Account.Industry, acctsListByIndustry);
+    acctCollection.filterValues(new AccountIndustryFilter()).toMapByField(Account.Industry, acctsListByIndustry);
     System.assertEquals(
       1,
       acctsListByIndustry.size(),
@@ -105,9 +97,7 @@ public class CollectionTest {
   class AccountMap implements MapOperation {
     public SObject doMap(SObject a) {
       Account acc = (Account) a;
-      acc.AnnualRevenue = acc.Name.startsWith('Ac')
-        ? acc.AnnualRevenue == null ? 10000 : acc.AnnualRevenue * 2
-        : 5000;
+      acc.AnnualRevenue = acc.Name.startsWith('Ac') ? acc.AnnualRevenue == null ? 10000 : acc.AnnualRevenue * 2 : 5000;
       return acc;
     }
   }

@@ -63,10 +63,7 @@ public class Collection {
     return newCollection;
   }
 
-  public void toMapByField(
-    SObjectField field,
-    Map<Object, List<SObject>> returnMap
-  ) {
+  public void toMapByField(SObjectField field, Map<Object, List<SObject>> returnMap) {
     List<SObject> newCollection = new List<SObject>();
     for (SObject s : this.sObjectCollection) {
       SObject processedRecord = this.applyOperations(s);
